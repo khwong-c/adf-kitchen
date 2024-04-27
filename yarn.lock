@@ -313,7 +313,7 @@
     lodash "^4.17.21"
     react-scrolllock "^5.0.1"
 
-"@atlaskit/drawer@^7.7.0":
+"@atlaskit/drawer@^7.7.0", "@atlaskit/drawer@^7.7.1":
   version "7.7.1"
   resolved "https://registry.yarnpkg.com/@atlaskit/drawer/-/drawer-7.7.1.tgz#29a5822553dd5666721cefe949fb98a9cfe83b97"
   integrity sha512-xv/eHa+UyKteOaAG6U3T/QpUOdg9hmrxYa7gVc3rWlcuUQL62a6a1YFo4uVKlNYG9e+78prBVKNFh0Fs160vDA==
@@ -1979,7 +1979,7 @@
     "@babel/runtime" "^7.0.0"
     "@emotion/react" "^11.7.1"
 
-"@atlaskit/icon@^22.0.0", "@atlaskit/icon@^22.1.0":
+"@atlaskit/icon@^22.0.0", "@atlaskit/icon@^22.1.0", "@atlaskit/icon@^22.1.1":
   version "22.1.1"
   resolved "https://registry.yarnpkg.com/@atlaskit/icon/-/icon-22.1.1.tgz#6efd7489257e84e89eb65d4a4dd696c69b1fe84c"
   integrity sha512-Au2xcpGAF8BPSjsOetc665co3hY8gPW+NuBB0FdMKqi4+riCi5/JE6hLuEF79cB8U24CKKt+ZgIjy8kg8DNvug==
@@ -2558,7 +2558,7 @@
     lodash "^4.17.21"
     uuid "^3.1.0"
 
-"@atlaskit/menu@^2.1.0", "@atlaskit/menu@^2.1.5":
+"@atlaskit/menu@^2.1.0", "@atlaskit/menu@^2.1.12", "@atlaskit/menu@^2.1.5":
   version "2.1.12"
   resolved "https://registry.yarnpkg.com/@atlaskit/menu/-/menu-2.1.12.tgz#66ee4a9e7abd679856f084c65ec0c7fc2154ec46"
   integrity sha512-d50Vd1goREpm4/cNuZC3gOIgR2FCxw+IopqYLlMCp12LrsDiUpS7M0oju4JO+gAv0rckGE7G7TYdMy8DyqWxvA==
@@ -2640,6 +2640,23 @@
   integrity sha512-2zIgqaCog9dhHRm3wgqvpBfmoY+Vt/B5c0DRslI/9xxNL7Pu4cPsHte7VxImxgD8YAxmjtsZAwceuU+4OnqGyg==
   dependencies:
     "@babel/runtime" "^7.0.0"
+
+"@atlaskit/page-layout@^3.1.5":
+  version "3.1.5"
+  resolved "https://registry.yarnpkg.com/@atlaskit/page-layout/-/page-layout-3.1.5.tgz#b50c131f69bb1df143fa5851283bf8e49dea0312"
+  integrity sha512-OddXL6RfjNi6wfVlukiTeTSuJxrYmYVsDLO6aDW6uBc7xT1VIUMQJcB1uMr7nh/IF7NEqcYiiWC/IimhhN5fdA==
+  dependencies:
+    "@atlaskit/ds-lib" "^2.2.0"
+    "@atlaskit/icon" "^22.1.0"
+    "@atlaskit/motion" "^1.5.0"
+    "@atlaskit/platform-feature-flags" "^0.2.0"
+    "@atlaskit/primitives" "^5.5.0"
+    "@atlaskit/theme" "^12.7.0"
+    "@atlaskit/tokens" "^1.43.0"
+    "@babel/runtime" "^7.0.0"
+    "@emotion/react" "^11.7.1"
+    bind-event-listener "^2.1.1"
+    raf-schd "^4.0.3"
 
 "@atlaskit/platform-feature-flags@0.2.5", "@atlaskit/platform-feature-flags@^0.2.0", "@atlaskit/platform-feature-flags@^0.2.1", "@atlaskit/platform-feature-flags@^0.2.2", "@atlaskit/platform-feature-flags@^0.2.4", "@atlaskit/platform-feature-flags@^0.2.5":
   version "0.2.5"
@@ -2854,7 +2871,7 @@
     react-uid "^2.2.0"
     shallow-equal "^3.1.0"
 
-"@atlaskit/side-navigation@^3.0.0":
+"@atlaskit/side-navigation@^3.0.0", "@atlaskit/side-navigation@^3.0.10":
   version "3.0.10"
   resolved "https://registry.yarnpkg.com/@atlaskit/side-navigation/-/side-navigation-3.0.10.tgz#39339fbccc22a092333a42b245ceccbc5ab35ce1"
   integrity sha512-uwixZmE+P/w0xUx0OiOyaQyn6XIAdy5J9LEus+5dQ6AbdQ3aNplfT5+28fZt2vrKwCmZx2eZf2XbQr/9qZWO7A==
@@ -13337,7 +13354,16 @@ string-natural-compare@^3.0.1:
   resolved "https://registry.yarnpkg.com/string-natural-compare/-/string-natural-compare-3.0.1.tgz#7a42d58474454963759e8e8b7ae63d71c1e7fdf4"
   integrity sha512-n3sPwynL1nwKi3WJ6AIsClwBMa0zTi54fn2oLU6ndfTSIO05xaznjSf15PcBZU6FNWbmN5Q6cxT4V5hGvB4taw==
 
-"string-width-cjs@npm:string-width@^4.2.0", string-width@^4.1.0, string-width@^4.2.0:
+"string-width-cjs@npm:string-width@^4.2.0":
+  version "4.2.3"
+  resolved "https://registry.yarnpkg.com/string-width/-/string-width-4.2.3.tgz#269c7117d27b05ad2e536830a8ec895ef9c6d010"
+  integrity sha512-wKyQRQpjJ0sIp62ErSZdGsjMJWsap5oRNihHhu6G7JVO/9jIB6UyevL+tXuOqrng8j/cxKTWyWUwvSTriiZz/g==
+  dependencies:
+    emoji-regex "^8.0.0"
+    is-fullwidth-code-point "^3.0.0"
+    strip-ansi "^6.0.1"
+
+string-width@^4.1.0, string-width@^4.2.0:
   version "4.2.3"
   resolved "https://registry.yarnpkg.com/string-width/-/string-width-4.2.3.tgz#269c7117d27b05ad2e536830a8ec895ef9c6d010"
   integrity sha512-wKyQRQpjJ0sIp62ErSZdGsjMJWsap5oRNihHhu6G7JVO/9jIB6UyevL+tXuOqrng8j/cxKTWyWUwvSTriiZz/g==
@@ -13424,7 +13450,14 @@ stringify-object@^3.3.0:
     is-obj "^1.0.1"
     is-regexp "^1.0.0"
 
-"strip-ansi-cjs@npm:strip-ansi@^6.0.1", strip-ansi@^6.0.0, strip-ansi@^6.0.1:
+"strip-ansi-cjs@npm:strip-ansi@^6.0.1":
+  version "6.0.1"
+  resolved "https://registry.yarnpkg.com/strip-ansi/-/strip-ansi-6.0.1.tgz#9e26c63d30f53443e9489495b2105d37b67a85d9"
+  integrity sha512-Y38VPSHcqkFrCpFnQ9vuSXmquuv5oXOKpGeT6aGrr3o3Gc9AlVa6JBfUSOCnbxGGZF+/0ooI7KrPuUSztUdU5A==
+  dependencies:
+    ansi-regex "^5.0.1"
+
+strip-ansi@^6.0.0, strip-ansi@^6.0.1:
   version "6.0.1"
   resolved "https://registry.yarnpkg.com/strip-ansi/-/strip-ansi-6.0.1.tgz#9e26c63d30f53443e9489495b2105d37b67a85d9"
   integrity sha512-Y38VPSHcqkFrCpFnQ9vuSXmquuv5oXOKpGeT6aGrr3o3Gc9AlVa6JBfUSOCnbxGGZF+/0ooI7KrPuUSztUdU5A==
@@ -14721,7 +14754,16 @@ workbox-window@6.6.1:
     "@types/trusted-types" "^2.0.2"
     workbox-core "6.6.1"
 
-"wrap-ansi-cjs@npm:wrap-ansi@^7.0.0", wrap-ansi@^7.0.0:
+"wrap-ansi-cjs@npm:wrap-ansi@^7.0.0":
+  version "7.0.0"
+  resolved "https://registry.yarnpkg.com/wrap-ansi/-/wrap-ansi-7.0.0.tgz#67e145cff510a6a6984bdf1152911d69d2eb9e43"
+  integrity sha512-YVGIj2kamLSTxw6NsZjoBxfSwsn0ycdesmc4p+Q21c5zPuZ1pl+NfxVdxPtdHvmNVOQ6XSYG4AUtyt/Fi7D16Q==
+  dependencies:
+    ansi-styles "^4.0.0"
+    string-width "^4.1.0"
+    strip-ansi "^6.0.0"
+
+wrap-ansi@^7.0.0:
   version "7.0.0"
   resolved "https://registry.yarnpkg.com/wrap-ansi/-/wrap-ansi-7.0.0.tgz#67e145cff510a6a6984bdf1152911d69d2eb9e43"
   integrity sha512-YVGIj2kamLSTxw6NsZjoBxfSwsn0ycdesmc4p+Q21c5zPuZ1pl+NfxVdxPtdHvmNVOQ6XSYG4AUtyt/Fi7D16Q==

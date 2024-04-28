@@ -38,7 +38,7 @@ jobs:
       - name: Install dependencies
         run: yarn install
       - name: Build App
-        run: PUBLIC_URL="https://khwong-c.github.io/adf-kitchen" yarn build
+        run: PUBLIC_URL="/adf-kitchen" yarn build
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:

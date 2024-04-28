@@ -51,44 +51,6 @@ export default function App() {
     const [tourStep, setTourStep] = useState<null | number>(null);
     const [adfDoc, setAdfDoc] = useState({});
 
-
-    // Create the editor API and selected plugin for once at the beginning
-    const universalPreset = useUniversalPreset({props: {}})
-    const {editorApi} = usePreset(() => universalPreset, [])
-    const {selectedPlugin} = useState(createSelectedPlugin({api: editorApi}));
-
-    // Obtain the selected plugin state, the selected objects with the summary
-    const {selectedPluginState} = useSharedPluginState(editorApi, ['selectedPlugin']);
-    const selectionSummary = (selectedPluginState?.adf || []).reduce(
-        (acc: SelectionSummaryType, item: {
-            type: string
-        }) => {
-            acc.total += 1;
-            acc.types += acc.entries.hasOwnProperty(item.type) ? 0 : 1;
-            acc.entries[item.type] = (acc.entries[item.type] || 0) + 1;
-            return acc;
-        }, {total: 0, types: 0, entries: {}}
-    );
-    const exportButtonStr = (selectionSummary.types === 0 && tourStep === null) ? "None" : (
-        selectionSummary.types === 1 ? `${selectionSummary.total} ${Object.keys(selectionSummary.entries)[0]}` :
-            `${selectionSummary.total} Objects`
-    );
-
-    // App control functions
-    const openImport = () => setState({...state, isImportOpen: true});
-    const closeImport = () => setState({...state, isImportOpen: false});
-    const closeExport = () => setState({...state, isExportOpen: false});
-    const setFullWidthMode = (fullWidthMode: boolean) => {
-        setState({...state, appearance: fullWidthMode ? "full-width" : "full-page"});
-    }
-
-    const startTour = () => {
-        setTourStep(0)
-    };
-    const tourNext = () => setTourStep((tourStep || 0) + 1);
-    const tourPrev = () => setTourStep((tourStep || 1) - 1);
-    const endTour = () => setTourStep(null);
-
     const editorProps: EditorProps = {
         useStickyToolbar: true,
 
@@ -131,6 +93,47 @@ export default function App() {
             'sticky-scrollbar': true,
         },
     }
+
+    // Create the editor API and selected plugin for once at the beginning
+    const universalPreset = useUniversalPreset({props: editorProps})
+    const {editorApi, preset} = usePreset(() => {
+        return universalPreset.add(createSelectedPlugin)
+    }, [universalPreset])
+
+    // const {selectedPlugin} = useState(createSelectedPlugin({api: editorApi}));
+
+    // Obtain the selected plugin state, the selected objects with the summary
+    const {selectedPluginState} = useSharedPluginState(editorApi, ['selectedPlugin']);
+    const selectionSummary = (selectedPluginState?.adf || []).reduce(
+        (acc: SelectionSummaryType, item: {
+            type: string
+        }) => {
+            acc.total += 1;
+            acc.types += acc.entries.hasOwnProperty(item.type) ? 0 : 1;
+            acc.entries[item.type] = (acc.entries[item.type] || 0) + 1;
+            return acc;
+        }, {total: 0, types: 0, entries: {}}
+    );
+    const exportButtonStr = (selectionSummary.types === 0 && tourStep === null) ? "None" : (
+        selectionSummary.types === 1 ? `${selectionSummary.total} ${Object.keys(selectionSummary.entries)[0]}` :
+            `${selectionSummary.total} Objects`
+    );
+
+    // App control functions
+    const openImport = () => setState({...state, isImportOpen: true});
+    const closeImport = () => setState({...state, isImportOpen: false});
+    const closeExport = () => setState({...state, isExportOpen: false});
+    const setFullWidthMode = (fullWidthMode: boolean) => {
+        setState({...state, appearance: fullWidthMode ? "full-width" : "full-page"});
+    }
+
+    const startTour = () => {
+        setTourStep(0)
+    };
+    const tourNext = () => setTourStep((tourStep || 0) + 1);
+    const tourPrev = () => setTourStep((tourStep || 1) - 1);
+    const endTour = () => setTourStep(null);
+
     const toolbarFragment = () => (
         <Fragment>
             <Help
@@ -209,7 +212,7 @@ export default function App() {
                             isOpen={state.isExportOpen} closeDialog={closeExport} code={state.exportedCode}
                         />
                         <Editor
-                            {...editorProps}
+                            /*{...editorProps}*/
                             appearance={state.appearance}
 
                             editorActions={actions}
@@ -218,7 +221,6 @@ export default function App() {
                             }}
 
                             contentComponents={
-
                                 <Fragment>
                                     <SpotlightTarget name={"editor"}>
                                         <BreadcrumbsMiscActions
@@ -227,11 +229,10 @@ export default function App() {
                                         />
                                     </SpotlightTarget>
                                 </Fragment>
-
-
                             }
                             primaryToolbarComponents={[toolbarFragment(),]}
-                            dangerouslyAppendPlugins={{__plugins: [selectedPlugin]}}
+
+                            preset={preset}
                         />
                     </div>
                 </div>

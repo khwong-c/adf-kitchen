@@ -66,7 +66,7 @@ export default function OnboardTour(props: {
             target={"exportAll"}
         >
             <p>This opens a dialog exporting the whole document in ADF format. Developers can copy the exported code
-                and load it with the <Code>load_adf</Code> API.</p>
+                and load it with the <Code>load_adf()</Code> API.</p>
         </Spotlight>,
         <Spotlight
             {...stypeProps}

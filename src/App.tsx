@@ -70,7 +70,7 @@ export default function App() {
             return acc;
         }, {total: 0, types: 0, entries: {}}
     );
-    const exportButtonStr = selectionSummary.types === 0 ? "None" : (
+    const exportButtonStr = (selectionSummary.types === 0 && tourStep === null) ? "None" : (
         selectionSummary.types === 1 ? `${selectionSummary.total} ${Object.keys(selectionSummary.entries)[0]}` :
             `${selectionSummary.total} Objects`
     );
@@ -166,8 +166,8 @@ export default function App() {
             </SpotlightTarget>
             <SpotlightTarget name="exportPart">
                 <Button
-                    appearance={selectionSummary.total === 0 ? "subtle" : "warning"}
-                    isDisabled={selectionSummary.total === 0}
+                    appearance={(selectionSummary.total === 0 && tourStep === null) ? "subtle" : "warning"}
+                    isDisabled={selectionSummary.total === 0 && tourStep === null }
                     onClick={() => {
                         setState({
                             ...state,

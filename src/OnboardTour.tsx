@@ -1,6 +1,5 @@
-import {
-    Spotlight,
-} from '@atlaskit/onboarding';
+import {Spotlight} from '@atlaskit/onboarding';
+import {Code} from '@atlaskit/code';
 import {N0} from '@atlaskit/theme/colors';
 
 export default function OnboardTour(props: {
@@ -43,8 +42,11 @@ export default function OnboardTour(props: {
             heading="Welcome to ADF Kitchen"
             target={"editor"}
         >
-            A sandboxed environment where you can play around with examples is now
-            only one click away.
+            <p>ADF kitchen is an Atlassian Editor sandbox, allowing user to create ADF Document with graphical
+                interface.
+                Exported document can be manipulated by our <Code>atlassian-doc-builder</Code> Python library.</p>
+            <p>Developers can use <Code>{"{VARIABLE_NAME}"}</Code> syntax as a template variable for dynamic content.
+            </p>
         </Spotlight>,
         <Spotlight
             {...stypeProps}
@@ -53,18 +55,18 @@ export default function OnboardTour(props: {
             heading="Import ADF"
             target={"import"}
         >
-            A sandboxed environment where you can play around with examples is now
-            only one click away.
+            <p>Developers can import existing ADF document, other than editing the document with the Editor.
+                Sample ADF document is available from the import dialog.</p>
         </Spotlight>,
         <Spotlight
             {...stypeProps}
             {...tourActions[1]}
 
-            heading="Export Whole Document"
+            heading="Export The Whole Document"
             target={"exportAll"}
         >
-            A sandboxed environment where you can play around with examples is now
-            only one click away.
+            <p>This opens a dialog exporting the whole document in ADF format. Developers can copy the exported code
+                and load it with the <Code>load_adf</Code> API.</p>
         </Spotlight>,
         <Spotlight
             {...stypeProps}
@@ -73,17 +75,19 @@ export default function OnboardTour(props: {
             heading="Export Selected Objects"
             target={"exportPart"}
         >
-            A sandboxed environment where you can play around with examples is now
-            only one click away.
+            <p>Developers can also export selected objects according to the use case (e.g. Dynamic table with variable
+                number of rows). <br/> The objects are exported as an array of ADF objects, imported
+                by <Code>load_adf()</Code> and inserted to existing document/objects with <Code>extend_content()</Code>
+            </p>
         </Spotlight>,
         <Spotlight
             {...stypeProps}
             {...tourActions[2]}
-            heading="Use with ADF Document Builder"
+            heading="Checkout our Github Repo"
             target={"github"}
         >
-            A sandboxed environment where you can play around with examples is now
-            only one click away.
+            <p>Don't forget to have a check with our Github Repo for further information, and
+                integrate <Code>atlassian-doc-builder</Code> to our daily workflows.</p>
         </Spotlight>,
     ];
 

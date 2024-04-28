@@ -25,6 +25,9 @@ const {getPluginState, createPluginState} = pluginFactory(
                 adf: selection?.content ?? [],
             };
         },
+        onDocChanged: (tr, pluginState: SelectedPluginState, editorState: EditorState) => {
+            return pluginState;
+        }
     },
 );
 

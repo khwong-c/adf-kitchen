@@ -1,6 +1,6 @@
 import React from 'react';
 import Button from '@atlaskit/button/new';
-import {CodeBlock} from '@atlaskit/code';
+import TextArea from '@atlaskit/textarea';
 
 import {copyToClipboard} from "@atlaskit/editor-common/clipboard";
 
@@ -28,16 +28,16 @@ export default function ADFExportDialog(props: {
                     </ModalHeader>
                     <ModalBody>
                         <Label htmlFor="adfDocExport">Exported ADF Object as below.</Label>
-                        <CodeBlock
+                        <TextArea
                             id="adfDocExport"
                             name="adfDocExport"
-                            text={JSON.stringify(props.code, null, 2)}
-                            language={"json"}
-                            showLineNumbers={false}
-                            contentEditable={false}
+                            maxHeight="50vh"
+                            isReadOnly
                             onPointerEnterCapture={()=>{}}
                             onPointerLeaveCapture={()=>{}}
-                        />
+                        >
+                            {JSON.stringify(props.code, null, 2)}
+                        </TextArea>
                     </ModalBody>
                     <ModalFooter>
                         <Button appearance="subtle" onClick={(e) => {

@@ -3,11 +3,6 @@ import type {EditorState} from '@atlaskit/editor-prosemirror/state';
 import {pluginFactory, stepHasSlice} from '@atlaskit/editor-common/utils';
 import type {Dispatch} from '@atlaskit/editor-common/event-dispatcher';
 import {SafePlugin} from '@atlaskit/editor-common/safe-plugin';
-import {DecorationSet} from '@atlaskit/editor-prosemirror/view';
-
-import type {EditorView} from '@atlaskit/editor-prosemirror/view';
-import {useEffect} from "react";
-import {useSharedPluginState} from "@atlaskit/editor-common/hooks";
 
 type SelectedPluginState = {
     adf: Array<any>
@@ -26,7 +21,6 @@ const {getPluginState, createPluginState} = pluginFactory(
     {
         onSelectionChanged: (tr, pluginState: SelectedPluginState, editorState: EditorState) => {
             const selection = editorState.selection.content().toJSON();
-            console.log(selection?.content ?? []);
             return {
                 adf: selection?.content ?? [],
             };

@@ -1,7 +1,9 @@
 body {
   margin: 0;
   padding: 0;
-  font-family: sans-serif;
+  font: var(--ds-font-body, normal 400 14px/1.42857142857143 -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif);
+  height: 100vh;
+  width: 100vw;
 }
 .assistive {
   display: none !important;

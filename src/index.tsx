@@ -1,12 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import {EditorContext} from '@atlaskit/editor-core';
 import App from './App.tsx';
 import './index.css';
-import { EditorContext } from '@atlaskit/editor-core';
+
 
 ReactDOM.render(
     <EditorContext>
-        <App />
+        <App/>
     </EditorContext>,
-  document.getElementById('app')
-);
+document.getElementById('root')
+)
+;

@@ -1,6 +1,6 @@
 import {PluginKey} from '@atlaskit/editor-prosemirror/state';
 import type {EditorState} from '@atlaskit/editor-prosemirror/state';
-import {pluginFactory, stepHasSlice} from '@atlaskit/editor-common/utils';
+import {pluginFactory} from '@atlaskit/editor-common/utils';
 import type {Dispatch} from '@atlaskit/editor-common/event-dispatcher';
 import {SafePlugin} from '@atlaskit/editor-common/safe-plugin';
 
@@ -42,7 +42,7 @@ const createPlugin = (
     });
 };
 
-export default ({api}) => {
+export default function selectedPlugin ({api}) {
     return {
         name: 'selectedPlugin',
         pmPlugins() {

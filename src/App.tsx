@@ -4,7 +4,6 @@ import Button from '@atlaskit/button/new';
 import BreadcrumbsMiscActions from './editor/BreadcrumbsMiscActions.tsx';
 
 import {
-    Spotlight,
     SpotlightManager,
     SpotlightTarget,
     SpotlightTransition,
@@ -56,7 +55,7 @@ export default function App() {
     // Create the editor API and selected plugin for once at the beginning
     const universalPreset = useUniversalPreset({props: {}})
     const {editorApi} = usePreset(() => universalPreset, [])
-    const [selectedPlugin, _] = useState(createSelectedPlugin({api: editorApi}));
+    const {selectedPlugin} = useState(createSelectedPlugin({api: editorApi}));
 
     // Obtain the selected plugin state, the selected objects with the summary
     const {selectedPluginState} = useSharedPluginState(editorApi, ['selectedPlugin']);

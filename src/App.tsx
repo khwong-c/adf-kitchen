@@ -158,20 +158,6 @@ export default function App() {
                     </div>
                 </Button>
             </SpotlightTarget>
-            <Button
-                onClick={(e) => {
-                    window.open("https://github.com/khwong-c/adf-kitchen")
-                }}
-                style={{marginRight: token('space.100', '8px'),}}
-            >
-                <div style={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: '4px',
-                }}>
-                    <RxGithubLogo/>Site Source
-                </div>
-            </Button>
             <SpotlightTarget name="import">
                 <Button
                     onClick={openImport}

@@ -1,8 +1,12 @@
 import {Fragment} from "react";
 import {Help} from '@atlaskit/atlassian-navigation';
 import Button from '@atlaskit/button/new';
-import {token} from '@atlaskit/tokens';
 import {RxGithubLogo} from "react-icons/rx";
+import {Box, xcss} from "@atlaskit/primitives";
+
+const buttonStyle = xcss({
+    marginRight: 'space.100',
+});
 
 type SelectionSummaryType = {
     total: number;
@@ -37,51 +41,55 @@ export const Toolbar = (props: {
     //     `${summary.total}${entryTypesCnt == 1 ? ` ${Object.keys(summary.entries)[0]}` : ""}`;
 
     return <Fragment>
-        <Help
-            onClick={onClickHelp}
-            style={{marginRight: token('space.100', '8px'),}}
-        >
-            Tutorial
-        </Help>
-        <Button
-            onClick={() => {
-                window.open("https://github.com/khwong-c/atlassian-doc-builder")
-            }}
-            style={{marginRight: token('space.100', '8px'),}}
-        >
-            <div style={{
-                display: 'flex',
-                alignItems: 'center',
-                gap: '4px',
-            }}>
-                <RxGithubLogo/>ADF Doc Builder
-            </div>
-        </Button>
-        <Button
-            onClick={onClickImport}
-            style={{marginRight: token('space.100', '8px')}}
-        >
-            Import ADF
-        </Button>
-        <Button
-            appearance={entryTypesCnt == 0 ? "subtle" : "warning"}
-            isDisabled={entryTypesCnt == 0}
-            onClick={onClickExportSelected}
-            style={{marginRight: token('space.100', '8px')}}
-        >
-            {`Export 
+        <Box xcss={buttonStyle}>
+            <Help
+                onClick={onClickHelp}
+                tooltip="Tutorial"
+            />
+        </Box>
+        <Box xcss={buttonStyle}>
+            <Button
+                onClick={() => {
+                    window.open("https://github.com/khwong-c/atlassian-doc-builder")
+                }}
+            >
+                <div style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '4px',
+                }}>
+                    <RxGithubLogo/>ADF Doc Builder
+                </div>
+            </Button>
+        </Box>
+        <Box xcss={buttonStyle}>
+            <Button
+                onClick={onClickImport}
+            >
+                Import ADF
+            </Button>
+        </Box>
+        <Box xcss={buttonStyle}>
+            <Button
+                appearance={entryTypesCnt == 0 ? "subtle" : "warning"}
+                isDisabled={entryTypesCnt == 0}
+                onClick={onClickExportSelected}
+            >
+                {`Export 
             ${entryTypesCnt != 0 ?
-                `${summary.total} ${entryTypesCnt == 1 ? ` ${Object.keys(summary.entries)[0]}` : "Objects"}` :
-                "None"}`
-            }
-        </Button>
-        <Button
-            appearance="primary"
-            onClick={onClickExportAll}
-            style={{marginRight: token('space.100', '8px')}}
-        >
-            Export Document
-        </Button>
+                    `${summary.total} ${entryTypesCnt == 1 ? ` ${Object.keys(summary.entries)[0]}` : "Objects"}` :
+                    "None"}`
+                }
+            </Button>
+        </Box>
+        <Box xcss={buttonStyle}>
+            <Button
+                appearance="primary"
+                onClick={onClickExportAll}
+            >
+                Export Document
+            </Button>
+        </Box>
     </Fragment>
 }
 export default Toolbar;

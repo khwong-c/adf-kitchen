@@ -1,6 +1,6 @@
 import {Fragment} from 'react'
 import {token} from '@atlaskit/tokens';
-import FullPageToggle from "./FullPageToggle.tsx";
+import FullPageToggle from "./FullPageToggle";
 
 const breadcrumbWrapper = {
     flex: '1 1 80%',

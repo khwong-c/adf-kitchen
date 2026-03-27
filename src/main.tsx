@@ -1,13 +1,15 @@
-// import { StrictMode } from 'react'
+// import './index.css'
+import {StrictMode} from 'react'
 import {createRoot} from 'react-dom/client'
-import './index.css'
+import "@atlaskit/css-reset";
+
 import {EditorContext} from '@atlaskit/editor-core/editor-context';
 import App from './App'
 
 createRoot(document.getElementById('root')!).render(
-    // <StrictMode>
-    <EditorContext>
-        <App/>
-    </EditorContext>
-    // </StrictMode>,
+    <StrictMode>
+        <EditorContext>
+            <App/>
+        </EditorContext>
+    </StrictMode>,
 )

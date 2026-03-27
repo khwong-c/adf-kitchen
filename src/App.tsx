@@ -1,17 +1,14 @@
-import {useMemo, useState} from "react";
+import {Fragment, useMemo, useState} from "react";
 import {ComposableEditor} from '@atlaskit/editor-core/composable-editor';
-import {useUniversalPreset} from '@atlaskit/editor-core/preset-universal';
-
-import createSelectedPlugin from "./editor/selectedPlugin";
+import {createEditorPreset} from "./editor/editorPreset";
 import {usePreset} from "@atlaskit/editor-core/use-preset";
 import {useSharedPluginState} from "@atlaskit/editor-common/hooks";
-
-import editorProps from "./editor/editorProps";
 import {contentStyles, wrapperStyles} from "./editor/styles"
 import Toolbar from "./editor/Toolbar";
 import BreadcrumbsControl from "./editor/BreadcrumbsControl";
-import ADFImportDialog from "./dialogs/ImportDialog.tsx";
-import ADFExportDialog from "./dialogs/ExportDialog.tsx";
+import ADFImportDialog from "./dialogs/ImportDialog";
+import ADFExportDialog from "./dialogs/ExportDialog";
+import type {JSONDocNode} from '@atlaskit/editor-json-transformer';
 
 const App = () => {
     // App states and ADF document
@@ -25,12 +22,11 @@ const App = () => {
     // const [tourStep, setTourStep] = useState<null | number>(null);
 
     // Preset features
-    const presetProps = {props: editorProps};
-    const universalPreset = useUniversalPreset(presetProps);
-    const {editorApi, preset} = usePreset(() => {
-            return universalPreset
-                .add(createSelectedPlugin)
-        },
+    const {editorApi, preset} = usePreset(
+        () => createEditorPreset(
+            state.isFullPage ? 'full-page' : 'full-width',
+        ),
+        [state.isFullPage],
     );
     // Selected Elements
     const {selectedPluginState} = useSharedPluginState(editorApi, ['selectedPlugin']);
@@ -78,7 +74,7 @@ const App = () => {
                             },
                             onClickExportAll() {
                                 editorApi?.core?.actions?.requestDocument(
-                                    (doc)=>{
+                                    (doc?: JSONDocNode) => {
                                         exportCode(doc!);
                                         openExportDialog();
                                     }
@@ -90,10 +86,12 @@ const App = () => {
                         })
                     ]}
                     contentComponents={
-                        <BreadcrumbsControl
-                            isFullPage={state.isFullPage}
-                            onClick={toggleFullPage}
-                        />
+                        <Fragment>
+                            <BreadcrumbsControl
+                                isFullPage={state.isFullPage}
+                                onClick={toggleFullPage}
+                            /><p/>
+                        </Fragment>
                     }
                 />
             </div>

@@ -37,8 +37,6 @@ export const Toolbar = (props: {
         }, {total: 0, entries: {}}
     );
     const entryTypesCnt = !tourStep ? Object.keys(summary.entries).length : 0;
-    // const exportButtonStr = (entryTypesCnt === 0 || tourStep === null) ? "None" :
-    //     `${summary.total}${entryTypesCnt == 1 ? ` ${Object.keys(summary.entries)[0]}` : ""}`;
 
     return <Fragment>
         <Box xcss={buttonStyle}>

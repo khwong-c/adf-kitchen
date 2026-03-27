@@ -1,4 +1,4 @@
-import {Fragment, useMemo, useState} from "react";
+import {Fragment, useState} from "react";
 import {ComposableEditor} from '@atlaskit/editor-core/composable-editor';
 import {createEditorPreset} from "./editor/editorPreset";
 import {usePreset} from "@atlaskit/editor-core/use-preset";
@@ -12,11 +12,9 @@ import type {JSONDocNode} from '@atlaskit/editor-json-transformer';
 
 const App = () => {
     // App states and ADF document
-    const [state, setState] = useState({
-        isFullPage: true,
-        isImportOpen: false,
-        isExportOpen: false,
-    });
+    const [isFullPage, setIsFullPage] = useState(true);
+    const [isImportOpen, setIsImportOpen] = useState(false);
+    const [isExportOpen, setIsExportOpen] = useState(false);
     const [exportedCode, setExportedCode] = useState("{}");
     const [importedAdf, setImportedAdf] = useState("{}");
     // const [tourStep, setTourStep] = useState<null | number>(null);
@@ -24,32 +22,34 @@ const App = () => {
     // Preset features
     const {editorApi, preset} = usePreset(
         () => createEditorPreset(
-            state.isFullPage ? 'full-page' : 'full-width',
+            isFullPage ? 'full-page' : 'full-width',
         ),
-        [state.isFullPage],
+        [isFullPage],
     );
     // Selected Elements
     const {selectedPluginState} = useSharedPluginState(editorApi, ['selectedPlugin']);
-    const selectedElements = useMemo(
-        () => selectedPluginState?.adf ?? [],
-        [selectedPluginState],
-    )
+    const selectedElements = selectedPluginState?.adf ?? [];
 
     // State Manager
-    const toggleFullPage = () => setState({...state, isFullPage: !state.isFullPage});
-    const closeImportDialog = () => setState({...state, isImportOpen: false});
-    const openImportDialog = () => setState({...state, isImportOpen: true});
+    const toggleFullPage = () => setIsFullPage(!isFullPage);
+    const openImportDialog = () => setIsImportOpen(true);
+    const closeImportDialog = () => setIsImportOpen(false);
+
     const exportCode = (items: object[] | object) => {
         setExportedCode(JSON.stringify(items, null, 2));
     }
-    const openExportDialog = () => setState({...state, isExportOpen: true});
-    const closeExportDialog = () => setState({...state, isExportOpen: false});
+    const openExportDialog = () => {
+        setIsExportOpen(true)
+    };
+    const closeExportDialog = () => {
+        setIsExportOpen(false)
+    };
 
 
     return (
         <div style={wrapperStyles}>
             <div style={contentStyles}>
-                <ADFImportDialog isOpen={state.isImportOpen}
+                <ADFImportDialog isOpen={isImportOpen}
                                  adfDoc={importedAdf}
                                  setAdfDoc={setImportedAdf}
                                  onCloseDialog={closeImportDialog}
@@ -58,12 +58,12 @@ const App = () => {
                                      closeImportDialog();
                                  }}
                 />
-                <ADFExportDialog isOpen={state.isExportOpen}
+                <ADFExportDialog isOpen={isExportOpen}
                                  exportedCode={exportedCode}
                                  onCloseDialog={closeExportDialog}
                 />
                 <ComposableEditor
-                    appearance={state.isFullPage ? 'full-page' : 'full-width'}
+                    appearance={isFullPage ? 'full-page' : 'full-width'}
                     preset={preset}
                     primaryToolbarComponents={[
                         Toolbar({
@@ -88,7 +88,7 @@ const App = () => {
                     contentComponents={
                         <Fragment>
                             <BreadcrumbsControl
-                                isFullPage={state.isFullPage}
+                                isFullPage={isFullPage}
                                 onClick={toggleFullPage}
                             /><p/>
                         </Fragment>

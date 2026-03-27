@@ -16,7 +16,7 @@ const ADFImportDialog = (props: {
     return (
         <ModalTransition>
             {isOpen && (
-                <Modal width="large">
+                <Modal width="large" onClose={onCloseDialog}>
                     <ModalHeader>
                         <ModalTitle>Import ADF Document</ModalTitle>
                     </ModalHeader>

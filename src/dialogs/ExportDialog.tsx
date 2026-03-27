@@ -1,4 +1,4 @@
-import Modal, {ModalBody, ModalFooter, ModalHeader, ModalTitle, ModalTransition,} from '@atlaskit/modal-dialog';
+import Modal, {ModalBody, ModalFooter, ModalHeader, ModalTitle,} from '@atlaskit/modal-dialog';
 import Button from '@atlaskit/button/new';
 import TextArea from '@atlaskit/textarea';
 import {Label} from '@atlaskit/form';
@@ -12,9 +12,9 @@ const ADFExportDialog = (props: {
 }) => {
     const {exportedCode, onCloseDialog, isOpen} = props;
     return (
-        <ModalTransition>
+        <>
             {isOpen && (
-                <Modal width="large">
+                <Modal width="large" onClose={onCloseDialog}>
                     <ModalHeader>
                         <ModalTitle>Export ADF Document</ModalTitle>
                     </ModalHeader>
@@ -42,7 +42,7 @@ const ADFExportDialog = (props: {
                     </ModalFooter>
                 </Modal>
             )}
-        </ModalTransition>
+        </>
     )
 }
 

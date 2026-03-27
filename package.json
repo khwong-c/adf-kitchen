@@ -12,6 +12,8 @@
   "dependencies": {
     "@atlaskit/atlassian-navigation": "^5.6.9",
     "@atlaskit/button": "^23.10.5",
+    "@atlaskit/code": "^17.4.4",
+    "@atlaskit/css": "^0.19.2",
     "@atlaskit/css-reset": "^7.4.0",
     "@atlaskit/editor-common": "^112.10.1",
     "@atlaskit/editor-core": "^217.6.2",
@@ -22,6 +24,7 @@
     "@atlaskit/form": "^15.5.0",
     "@atlaskit/icon": "^33.1.0",
     "@atlaskit/modal-dialog": "^14.13.0",
+    "@atlaskit/onboarding": "^14.5.7",
     "@atlaskit/primitives": "^18.1.0",
     "@atlaskit/textarea": "^8.2.4",
     "@atlaskit/theme": "^22.0.1",

@@ -1,28 +1,20 @@
-import React from 'react';
+import Modal, {ModalBody, ModalFooter, ModalHeader, ModalTitle,} from '@atlaskit/modal-dialog';
 import Button from '@atlaskit/button/new';
 import TextArea from '@atlaskit/textarea';
+import {Label} from '@atlaskit/form';
 
 import {copyToClipboard} from "@atlaskit/editor-common/clipboard";
 
-import {Label} from '@atlaskit/form';
-
-import Modal, {
-    ModalBody,
-    ModalFooter,
-    ModalHeader,
-    ModalTitle,
-    ModalTransition,
-} from '@atlaskit/modal-dialog';
-
-export default function ADFExportDialog(props: {
+const ADFExportDialog = (props: {
     isOpen: boolean,
-    closeDialog: () => void,
-    code: object,
-}) {
+    exportedCode: string,
+    onCloseDialog: () => void,
+}) => {
+    const {exportedCode, onCloseDialog, isOpen} = props;
     return (
-        <ModalTransition>
-            {props.isOpen && (
-                <Modal width="large">
+        <>
+            {isOpen && (
+                <Modal width="large" onClose={onCloseDialog}>
                     <ModalHeader>
                         <ModalTitle>Export ADF Document</ModalTitle>
                     </ModalHeader>
@@ -33,27 +25,25 @@ export default function ADFExportDialog(props: {
                             name="adfDocExport"
                             maxHeight="50vh"
                             isReadOnly
-                            onPointerEnterCapture={()=>{}}
-                            onPointerLeaveCapture={()=>{}}
                         >
-                            {JSON.stringify(props.code, null, 2)}
+                            {exportedCode}
                         </TextArea>
                     </ModalBody>
                     <ModalFooter>
-                        <Button appearance="subtle" onClick={(e) => {
-                            props.closeDialog();
-                        }}>
+                        <Button appearance="subtle" onClick={onCloseDialog}>
                             Close
                         </Button>
-                        <Button appearance="primary" onClick={(e) => {
-                            copyToClipboard(JSON.stringify(props.code, null, 2));
-                            props.closeDialog();
+                        <Button appearance="primary" onClick={async () => {
+                            await copyToClipboard(exportedCode);
+                            onCloseDialog()
                         }}>
                             Copy and Close
                         </Button>
                     </ModalFooter>
                 </Modal>
             )}
-        </ModalTransition>
-    );
+        </>
+    )
 }
+
+export default ADFExportDialog;

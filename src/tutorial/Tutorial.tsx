@@ -2,7 +2,9 @@ import {Spotlight} from '@atlaskit/onboarding';
 import {Code} from '@atlaskit/code';
 import {N0} from '@atlaskit/theme/colors';
 
-export default function OnboardTour(props: {
+import type {Actions} from '@atlaskit/onboarding/types';
+
+export default function Tutorial(props: {
     activeSpotlight: number | null;
     nextPage: () => void;
     prevPage: () => void;
@@ -13,31 +15,31 @@ export default function OnboardTour(props: {
         targetRadius: 3,
         targetBgColor: N0,
     };
-    const tourActions = [
-        {
-            actions: [
-                {onClick: () => nextPage(), text: 'Next'},
-                {onClick: () => endTour(), text: 'Dismiss', appearance: 'subtle'},
-            ],
-        },
-        {
-            actions: [
-                {onClick: () => nextPage(), text: 'Next'},
-                {onClick: () => prevPage(), text: 'Back', appearance: 'subtle'},
-            ],
-        },
-        {
-            actions: [
-                {onClick: () => endTour(), text: 'Done'},
-                {onClick: () => prevPage(), text: 'Back', appearance: 'subtle'},
-            ],
-        },
-    ]
+
+    const tourActions: {
+        first: Actions,
+        mid: Actions,
+        last: Actions,
+    } = {
+        first: [
+            {onClick: () => nextPage(), text: 'Next'},
+            {onClick: () => endTour(), text: 'Dismiss', appearance: 'subtle'},
+        ],
+        mid: [
+            {onClick: () => nextPage(), text: 'Next'},
+            {onClick: () => prevPage(), text: 'Back', appearance: 'subtle'},
+        ],
+        last: [
+            {onClick: () => endTour(), text: 'Done'},
+            {onClick: () => prevPage(), text: 'Back', appearance: 'subtle'},
+        ],
+    }
+
 
     const spotlights = [
         <Spotlight
             {...stypeProps}
-            {...tourActions[0]}
+            actions={tourActions.first}
 
             heading="Welcome to ADF Kitchen"
             target={"editor"}
@@ -50,7 +52,7 @@ export default function OnboardTour(props: {
         </Spotlight>,
         <Spotlight
             {...stypeProps}
-            {...tourActions[1]}
+            actions={tourActions.mid}
 
             heading="Import ADF"
             target={"import"}
@@ -60,7 +62,7 @@ export default function OnboardTour(props: {
         </Spotlight>,
         <Spotlight
             {...stypeProps}
-            {...tourActions[1]}
+            actions={tourActions.mid}
 
             heading="Export The Whole Document"
             target={"exportAll"}
@@ -70,7 +72,7 @@ export default function OnboardTour(props: {
         </Spotlight>,
         <Spotlight
             {...stypeProps}
-            {...tourActions[1]}
+            actions={tourActions.mid}
 
             heading="Export Selected Objects"
             target={"exportPart"}
@@ -82,7 +84,7 @@ export default function OnboardTour(props: {
         </Spotlight>,
         <Spotlight
             {...stypeProps}
-            {...tourActions[2]}
+            actions={tourActions.last}
             heading="Checkout our Github Repo"
             target={"github"}
         >

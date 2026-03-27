@@ -1,55 +1,58 @@
-import {PluginKey} from '@atlaskit/editor-prosemirror/state';
-import type {EditorState} from '@atlaskit/editor-prosemirror/state';
-import {pluginFactory} from '@atlaskit/editor-common/utils';
-import type {Dispatch} from '@atlaskit/editor-common/event-dispatcher';
+import {type EditorState, PluginKey} from '@atlaskit/editor-prosemirror/state';
 import {SafePlugin} from '@atlaskit/editor-common/safe-plugin';
+import type {PMPluginFactoryParams} from "@atlaskit/editor-common/types";
+import {pluginFactory} from '@atlaskit/editor-common/utils';
 
-type SelectedPluginState = {
-    adf: Array<any>
+
+// A plugin to get the selected ADF Object from the editor
+
+const pluginName = 'selectedPlugin';
+
+export type SelectedPluginState = {
+    adf?: object[];
 };
 
-export const selectedPluginKey = new PluginKey<SelectedPluginState>('selectedPlugin');
-
-const reducer = (pluginState: SelectedPluginState, action: unknown) => {
-    return pluginState;
-}
-
+export const selectedPluginKey = new PluginKey<SelectedPluginState>(pluginName);
 
 const {getPluginState, createPluginState} = pluginFactory(
     selectedPluginKey,
-    reducer,
+    (state: SelectedPluginState) => state,
     {
-        onSelectionChanged: (tr, pluginState: SelectedPluginState, editorState: EditorState) => {
-            const selection = editorState.selection.content().toJSON();
+        onSelectionChanged: (editorState ?: EditorState) => {
+            if (!editorState) return {
+                adf: [],
+            };
+            const selection = editorState?.selection?.content();
+            if (!selection) return {
+                adf: [],
+            };
             return {
-                adf: selection?.content ?? [],
+                adf: selection?.toJSON()?.content ?? [],
             };
         },
-        onDocChanged: (tr, pluginState: SelectedPluginState, editorState: EditorState) => {
-            return pluginState;
-        }
+        onDocChanged: (pluginState: SelectedPluginState) => pluginState || {adf: []},
     },
 );
 
 const createPlugin = (
-    dispatch: Dispatch,
+    pmPluginFactoryParams: PMPluginFactoryParams,
 ) => {
+    const {dispatch} = pmPluginFactoryParams;
     return new SafePlugin<SelectedPluginState>({
         key: selectedPluginKey,
-        state: createPluginState(dispatch, {
-            adf: [],
-        }),
-    });
-};
+        state: createPluginState(dispatch, {adf: [],}),
+        getState: getPluginState,
+    })
+}
 
-export default function selectedPlugin ({api}) {
+export default function selectedPlugin() {
     return {
         name: 'selectedPlugin',
         pmPlugins() {
             return [
                 {
                     name: 'selectedPlugin',
-                    plugin: ({dispatch}: { dispatch: Dispatch }) => createPlugin(dispatch),
+                    plugin: (params: PMPluginFactoryParams) => createPlugin(params),
                 },
             ];
         },

@@ -5,6 +5,7 @@ import {usePreset} from "@atlaskit/editor-core/use-preset";
 import {useSharedPluginState} from "@atlaskit/editor-common/hooks";
 import {contentStyles, wrapperStyles} from "./editor/styles"
 import Toolbar from "./editor/Toolbar";
+import {stubMentionProvider} from "./editor/mentionPlugin.ts";
 import BreadcrumbsControl from "./editor/BreadcrumbsControl";
 import ADFImportDialog from "./dialogs/ImportDialog";
 import ADFExportDialog from "./dialogs/ExportDialog";
@@ -102,6 +103,7 @@ const App = () => {
                                 /><p/>
                             </SpotlightTarget>
                         }
+                        mentionProvider={Promise.resolve(stubMentionProvider)}
                     />
                 </div>
             </div>

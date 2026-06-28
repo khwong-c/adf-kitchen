@@ -22,6 +22,7 @@ import {tablesPlugin} from '@atlaskit/editor-plugins/table';
 import {tasksAndDecisionsPlugin} from '@atlaskit/editor-plugins/tasks-and-decisions';
 import {textColorPlugin} from '@atlaskit/editor-plugins/text-color';
 import {toolbarListsIndentationPlugin} from '@atlaskit/editor-plugins/toolbar-lists-indentation';
+import {mentionsPlugin} from '@atlaskit/editor-plugins/mentions'
 
 import selectedPlugin from './selectedPlugin'
 
@@ -130,5 +131,6 @@ export const createEditorPreset = (
         .add(borderPlugin)
         .add(fragmentPlugin)
         .add(pasteOptionsToolbarPlugin)
+        .add(mentionsPlugin)
         .add(selectedPlugin)
 };

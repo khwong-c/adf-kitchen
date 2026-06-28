@@ -26,7 +26,9 @@ export class StubMentionResource
      * Create a client to your mention provider
      */
     filter(query?: string): void {
-        const filteredUsers = fakeUserList.filter(user => user.name.toLowerCase().includes(query?.toLowerCase() || ''));
+        const filteredUsers = fakeUserList.filter(
+            user => user.name.toLowerCase().includes(query?.toLowerCase() || '')
+        );
         this._notifyListeners({mentions: filteredUsers, query: query || ''}, {});
         this._notifyAllResultsListeners({mentions: filteredUsers, query: query || ''});
         return;

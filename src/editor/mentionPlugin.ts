@@ -8,6 +8,10 @@ const fakeUserList = [
     {
         id: "user-tuna",
         name: "Tuna Sashimi",
+    },
+    {
+        id: "{user_id}",
+        name: "{user_name}",
     }
 ]
 
@@ -22,11 +26,9 @@ export class StubMentionResource
      * Create a client to your mention provider
      */
     filter(query?: string): void {
-        setTimeout(async () => {
-            const filteredUsers = fakeUserList.filter(user => user.name.toLowerCase().includes(query?.toLowerCase() || ''));
-            this._notifyListeners({mentions: filteredUsers, query: query || ''}, {});
-            this._notifyAllResultsListeners({mentions: filteredUsers, query: query || ''});
-        }, 30 + 1);
+        const filteredUsers = fakeUserList.filter(user => user.name.toLowerCase().includes(query?.toLowerCase() || ''));
+        this._notifyListeners({mentions: filteredUsers, query: query || ''}, {});
+        this._notifyAllResultsListeners({mentions: filteredUsers, query: query || ''});
         return;
     }
 }
